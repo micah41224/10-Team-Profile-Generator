@@ -13,4 +13,10 @@ describe("Engineer", () => {
         const e = new Manager("Jane", 1, "jane@gmail.com", testValue);
         expect(e.officeNumber).toBe(testValue);
     });
+
+    test("Can get office number using getOfficeNumber() method", () => {
+        const testValue = 3000;
+        const e = new Manager("Jane", 1, "jane@gmail.com", testValue);
+        expect(e.getOfficeNumber()).toBe(testValue);
+    });
 });

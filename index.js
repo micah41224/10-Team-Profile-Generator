@@ -4,6 +4,7 @@ const path = require("path");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+const { inherits } = require("util");
 
 const OUTPUT_DIR = path.resolve(__dirname, "dist")
 const outputPath = path.join(OUTPUT_DIR, "index.html");
@@ -15,5 +16,15 @@ const team = [
     new Intern("Blake", 4, "blake@gmail.com", "Georgia Tech")
 ];
 
-fs.writeFileSync(outputPath, render(team), "utf-8");
-// console.log();
+
+
+function writeFile(team) {
+    fs.writeFileSync(outputPath, render(team), "utf-8");
+}
+
+function init() {
+    //inquirer
+    
+}
+
+init()
