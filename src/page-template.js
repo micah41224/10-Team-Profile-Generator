@@ -1,18 +1,18 @@
 const generateTeam = team => {
 
-        const generateManager = manager => {
+        const generateManager = (manager) => {
         return `
     <div class="card employee-card">
     <div class="card-header">
 
-        <h2 class="card-title">${manager.getName()}</h2>
-        <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${manager.getRole()}</hs>
+        <h2 class="card-title">${manager.name}</h2>
+        <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${manager.id}</hs>
     </div>
     <div class="card-body">
         <ul class="list-group">
-                <li class="list-group-item">ID: ${manager.getId()}</li>
-                <li class="list-group-item">Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
-                <li class="list-group-item">Office number: ${manager.getOfficeNumber()}</li>
+                <li class="list-group-item">ID: ${manager.id}</li>
+                <li class="list-group-item">Email: <a href="mailto:${manager.email}">${manager.email}</a></li>
+    
         </ul>
         
     </div>
@@ -20,8 +20,36 @@ const generateTeam = team => {
         `;
     };
 
+    const generateEngineer = (engineer) => {
+        return `
+    <div class="card employee-card">
+    <div class="card-header">
+
+        <h2 class="card-title">${engineer.name}</h2>
+        <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${engineer.id}</hs>
+    </div>
+    <div class="card-body">
+        <ul class="list-group">
+                <li class="list-group-item">ID: ${engineer.id}</li>
+                <li class="list-group-item">Email: <a href="mailto:${engineer.email}">${engineer.email}</a></li>
     
-}
+        </ul>
+        
+    </div>
+</div>
+        `;
+    };
+
+    const htmlArr = []
+
+    // const htmlArr = [generateManager(team[0]), generateEngineer(team[1]), generateEngineer(team[2]),];
+
+    htmlArr
+    .push(team.filter(employee => employee.role === "manager"))
+    .map((manager) => generateManager(manager));
+
+    return htmlArr.join("");
+};
 
 
 module.exports = team => {
