@@ -12,6 +12,7 @@ const generateTeam = team => {
         <ul class="list-group">
                 <li class="list-group-item">ID: ${manager.id}</li>
                 <li class="list-group-item">Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
+                <li class="list-group-item">OfficeNumber: ${manager.getOfficeNumber()}</li>
     
         </ul>
         
@@ -32,6 +33,7 @@ const generateTeam = team => {
         <ul class="list-group">
                 <li class="list-group-item">ID: ${engineer.getId()}</li>
                 <li class="list-group-item">Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li>
+                <li class="list-group-item">Github: ${engineer.getGithub()}</li>
     
         </ul>
         
@@ -52,6 +54,7 @@ const generateTeam = team => {
         <ul class="list-group">
                 <li class="list-group-item">ID: ${intern.getId()}</li>
                 <li class="list-group-item">Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
+                <li class="list-group-item">School: ${intern.getSchool()}</li>
     
         </ul>
         
@@ -65,19 +68,19 @@ const generateTeam = team => {
     // const htmlArr = [generateManager(team[0]), generateEngineer(team[1]), generateEngineer(team[2]),];
 
     htmlArr
-    .push(team.filter(employee => employee.role === "manager")
+    .push(team.filter(employee => employee.getRole() === "Manager")
     .map((manager) => generateManager(manager))
     .join("")
  );
 
  htmlArr
-    .push(team.filter(employee => employee.role === "engineer")
+    .push(team.filter(employee => employee.getRole() === "Engineer")
     .map((engineer) => generateEngineer(engineer))
     .join("")
  );
 
  htmlArr
-    .push(team.filter(employee => employee.role === "intern")
+    .push(team.filter(employee => employee.getRole() === "Intern")
     .map((intern) => generateIntern(intern))
     .join("")
  );
