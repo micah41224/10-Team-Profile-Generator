@@ -14,6 +14,14 @@ https://github.com/micah41224/10-Team-Profile-Generator
 
 ## Link to demonstration video:
 
+### Screencastify Link:
+
+https://watch.screencastify.com/v/uKiLfD8APGRnqUs3WFq5
+
+### Google Drive Link:
+
+https://drive.google.com/file/d/1cZSMiM_JWaSDbs4q-SVihFdiD0f7WIFY/view
+
 ## Screenshot of final page:
 
 ![Completed Application Page](/assets/Team-Profile-Generator-Final-SS.png)
