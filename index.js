@@ -1,5 +1,11 @@
 // const { identifier } = require("@babel/types");
 const render = require("./src/page-template.js");
+const fs = require("fs");
+const path = require("path");
+
+const OUTPUT_DIR = path.resolve(__dirname, "dist")
+const outputPath = path.join(OUTPUT_DIR, "index.html");
+
 const team = [
     {
         name: "Mike",
@@ -25,7 +31,7 @@ const team = [
         email: "blake@gmail.com",
         role: "intern"
     },
-]
+];
 
-
-console.log(render(team));
+fs.writeFileSync(outputPath, render(team), "utf-8");
+// console.log();
