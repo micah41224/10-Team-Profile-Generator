@@ -7,11 +7,13 @@ const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const { inherits } = require("util");
 const inquirer = require("inquirer");
+// const { isTypedArray } = require("util/types");
 
 const OUTPUT_DIR = path.resolve(__dirname, "dist")
 const outputPath = path.join(OUTPUT_DIR, "index.html");
 
 const team = [];
+const idArray = [];
 
 
 // const team = [
@@ -86,11 +88,102 @@ function init() {
     ]).then(answers => {
         const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
         team.push(manager);
-        writeFile(team);
+        //idArray.push(answers.managerId);
+        //writeFile(team);
+        createTeam();
     });
 }
 
+function createTeam() {
+    inquirer.prompt([
+        {
+            type: "list",
+            name: "memberChoice",
+            message: "Which type of team member would you like to add?",
+            choices: [
+                "Engineer",
+                "Intern",
+                "I don't want to add any more team members",
+            ],
+        },
+    ]).then(userChoice => {
+        switch (userChoice.memberChoice) {
+            case "Engineer":
+                addEngineer();
+                break;
+            case "Intern":
+                addIntern();
+                break;
+            default:
+                writeFile(team);
+        }
+    });
+}
 
+function addEngineer() {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "engineerName",
+            message: "What is your engineer's name?",
+            validate: answer => {
+                if (answer !== "") {
+                    return true;
+                }
+                return "Please enter at least one character.";
+            }
+        },
+        {
+            type: "input",
+            name: "engineerId",
+            message: "What is your engineer's id?",
+            validate: answer => {
+                const pass = answer.match(
+                    /^[1-9]\d*$/
+                );
+                if (pass) {
+                    if (idArray.includes(answer)) {
+                        return "This ID is already taken. Please enter a different number.";
+                    } else {
+                        return true;
+                    }
+
+                }
+                return "Please enter a positive number greater than zero.";
+            }
+        },
+        {
+            type: "input",
+            name: "engineerEmail",
+            message: "What is your engineer's email?",
+            validate: answer => {
+                const pass = answer.match(
+                    /\S+@\S+\.\S+/
+                );
+                if (pass) {
+                    return true;
+                }
+                return "Please enter a valid email address.";
+            }
+        },
+        {
+            type: "input",
+            name: "engineerGithub",
+            message: "What is your engineer's Github username?",
+            validate: answer => {
+                if (answer !== "") {
+                    return true;
+                }
+                return "Please enter at least one character.";
+            }
+        }
+    ]).then(answers => {
+        const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
+        team.push(engineer);
+        idArray.push(answers.engineerId);
+        createTeam();
+    });
+}
 
 // const team = [
 //     new Manager("Mike", 1, "mike@gmail.com", 1234),
