@@ -31,4 +31,3 @@ test("Set email va constructor arguement", () => {
     expect(e.email).toBe(testValue);
 });
 });
-
