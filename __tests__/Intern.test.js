@@ -1,33 +1,30 @@
 const { TestWatcher } = require("@jest/core");
 const Employee = require("../lib/Employee");
+const Intern = require("../lib/Intern");
 
-describe("Employee", () => {
-    test("Can instantiate Employee instance", () => {
-        const e = new Employee();
+describe("Intern", () => {
+    test("Can instantiate Intern instance", () => {
+        const e = new Intern();
         expect (typeof e).toBe("object");
     });
 
-test("Can set name via constructor argument", () => {
-    const name = "Jane"
-    const e = new Employee(name);
-    expect(e.name).toBe(name);
-});
+    test("Will getRole() say intern", () => {
+        const testValue = "Intern";
+        const e = new Intern("Mike", 1, "mike@gmail.com");
+        expect(e.getRole()).toBe(testValue);
+    });
 
-test("Can set id via constructor argument", () => {
-    const testValue = 100;
-    const e = new Employee("John", testValue);
-    expect(e.id).toBe(testValue);
-})
+    test("Can set school using constructor argument", () => {
+        const testValue = "GT"
+        const e= new Intern("Mike", 1, "mike@gmail.com", testValue);
+        expect(e.school).toBe(testValue);
+    });
 
-test("Can get name via getName()", () => {
-    const testValue = "Jane";
-    const e = new Employee(testValue);
-    expect(e.getName()).toBe(testValue);
-});
+    test("Can retrieve school using getSchool()", () => {
+        const testValue = "GT";
+        const e = new Intern("Mike", 1, "mike@gmail.com", testValue);
+        expect(e.school).toBe(testValue);
+    });
 
-test("Set email va constructor arguement", () => {
-    const testValue = "mike@gmail.com";
-    const e = new Employee("Mike", 1, testValue);
-    expect(e.email).toBe(testValue);
-});
+
 });
